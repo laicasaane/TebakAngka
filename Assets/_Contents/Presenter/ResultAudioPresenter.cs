@@ -17,7 +17,7 @@ namespace TebakAngka.Presenter
         private readonly AudioClipCollection _resultCorrectClipsRanca;
         private readonly AudioClipCollection _resultWrongClipsIbun;
         private readonly AudioSource _audioSource;
-        
+
         private IDisposable _subscription;
 
         public ResultAudioPresenter(
@@ -31,13 +31,13 @@ namespace TebakAngka.Presenter
             _resultWrongClipsIbun = audioClipCollections[2];
              _audioSource = audioSource;
         }
-        
+
         public void Initialize()
         {
             var bag = DisposableBag.CreateBuilder();
-            
+
             _answerResultSubscriber.Subscribe(GameStateEnum.CheckAnswer, PlayResultAudio).AddTo(bag);
-            
+
             _subscription = bag.Build();
         }
 
@@ -54,7 +54,7 @@ namespace TebakAngka.Presenter
             {
                 _audioSource.clip = _resultWrongClipsIbun[Random.Range(0, _resultWrongClipsIbun.Count)];
             }
-            
+
             _audioSource.pitch = Random.Range(0.95f, 1.05f);
             _audioSource.Play();
 

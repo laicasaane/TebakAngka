@@ -16,7 +16,7 @@ namespace TebakAngka.Gameplay
             _gameModel = gameModel;
             _answerRequestHandler = answerRequestHandler;
         }
-        
+
         public async UniTask OnStateBegan(CancellationToken token)
         {
             using var cts = new CancellationTokenSource();

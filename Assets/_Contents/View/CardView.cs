@@ -18,7 +18,7 @@ namespace TebakAngka.View
         [SerializeField] private Color _darkColor = new Color(0.07058824f, 0.07058824f, 0.07058824f);
 
         private int _number;
-        
+
         public bool Visible
         {
             get => gameObject.activeInHierarchy;

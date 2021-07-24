@@ -10,7 +10,7 @@ namespace TebakAngka.Gameplay
     {
         private readonly IReadOnlyList<IGameState> _gameStates;
         private readonly CancellationTokenSource _lifeTimeCancellationTokenSource = new CancellationTokenSource();
-        
+
         private IGameState this[GameStateEnum gameState] => _gameStates[(int) gameState];
 
         public GameStateEngine(IReadOnlyList<IGameState> gameStates)
@@ -21,9 +21,9 @@ namespace TebakAngka.Gameplay
         public async UniTask StartAsync(CancellationToken cancellationToken)
         {
             var token = cancellationToken == default ? _lifeTimeCancellationTokenSource.Token : cancellationToken;
-            
+
             await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: token);
-            
+
             RunStateEngine(token).Forget();
         }
 

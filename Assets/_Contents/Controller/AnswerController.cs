@@ -15,11 +15,11 @@ namespace TebakAngka.Controller
         {
             _cards = cards;
         }
-        
+
         public async UniTask<int> InvokeAsync(GameStateEnum request, CancellationToken cancellationToken = default)
         {
             if (request != GameStateEnum.UserInput) return -1;
-            
+
             var waitInputTask = new List<UniTask<int>>();
             foreach (var card in _cards)
             {
@@ -28,7 +28,7 @@ namespace TebakAngka.Controller
             }
 
             var result = -1;
-            
+
             if (waitInputTask.Count > 1)
             {
                 (_, result) = await UniTask.WhenAny(waitInputTask);
@@ -37,7 +37,7 @@ namespace TebakAngka.Controller
             {
                 result = await waitInputTask[0];
             }
-            
+
             return result;
         }
     }

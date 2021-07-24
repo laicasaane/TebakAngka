@@ -8,7 +8,7 @@ namespace TebakAngka.Gameplay
     {
         private readonly GameModel _gameModel;
         private readonly IAsyncPublisher<GameStateEnum, bool> _answerResultPublisher;
-        
+
         private const GameStateEnum OwnState = GameStateEnum.CheckAnswer;
 
         public CheckAnswerState(
@@ -18,7 +18,7 @@ namespace TebakAngka.Gameplay
             _gameModel = gameModel;
             _answerResultPublisher = answerResultPublisher;
         }
-        
+
         public async UniTask OnStateBegan(CancellationToken token)
         {
             await _answerResultPublisher.PublishAsync(OwnState, _gameModel.IsAnswerCorrect, token);

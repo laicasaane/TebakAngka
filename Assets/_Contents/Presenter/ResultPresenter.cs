@@ -13,9 +13,9 @@ namespace TebakAngka.Presenter
         private readonly IAsyncSubscriber<GameStateEnum, bool> _answerResultSubscriber;
         private readonly ResultView _correctResultView;
         private readonly ResultView _wrongResultView;
-        
+
         private IDisposable _subscription;
-        
+
         public ResultPresenter(
             IAsyncSubscriber<GameStateEnum, bool> answerResultSubscriber,
             ResultView[] resultViews)
@@ -24,7 +24,7 @@ namespace TebakAngka.Presenter
             _correctResultView = resultViews[0];
             _wrongResultView = resultViews[1];
         }
-        
+
         public void Initialize()
         {
             var bag = DisposableBag.CreateBuilder();

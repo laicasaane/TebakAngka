@@ -22,7 +22,7 @@ namespace TebakAngka.View
         {
             var scaleAnimationOut = _flipDirection == FlipDirection.Horizontal ? _baseTransform.DOScaleY(0f, AnimationDuration).From(1f) : _baseTransform.DOScaleX(0f, AnimationDuration).From(1f);
             var scaleAnimationIn = _flipDirection == FlipDirection.Horizontal ? _baseTransform.DOScaleY(1f, AnimationDuration).From(0f) : _baseTransform.DOScaleX(1f, AnimationDuration).From(0f);
-            
+
             _content.SetActive(!flipOpen);
             return DOTween.Sequence()
                 .Append(scaleAnimationOut)
@@ -45,7 +45,7 @@ namespace TebakAngka.View
             var toOpen = !_content.activeInHierarchy;
             AnimateFlip(toOpen);
         }
-        
+
         public UniTask ToggleFlipAsync(CancellationToken token = default)
         {
             var toOpen = !_content.activeInHierarchy;

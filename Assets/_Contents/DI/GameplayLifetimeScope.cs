@@ -15,14 +15,14 @@ namespace TebakAngka.DI
     {
         [SerializeField] private GameObject _mainMenuBaseObject;
         [SerializeField] private Button _startButton;
-        
+
         [SerializeField] private GameObject _cardViewPrefab;
         [SerializeField] private Transform _cardViewParent;
         [SerializeField] private ResultView[] _resultViews;
         [SerializeField] private AudioClipCollection[] _levelIntroClipCollections;
         [SerializeField] private AudioClipCollection[] _resultClipCollections;
         [SerializeField] private AudioSource _audioSource;
-        
+
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterDomain(builder);
@@ -36,10 +36,10 @@ namespace TebakAngka.DI
         {
             // Register Model.
             builder.Register<GameModel>(Lifetime.Scoped);
-            
+
             // Register GameStateEngine as entry point.
             builder.RegisterEntryPoint<GameStateEngine>(Lifetime.Scoped);
-            
+
             // Register GameStates by interface IGameState.
             builder.Register<MainMenuState>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<GenerateLevelState>(Lifetime.Scoped).AsImplementedInterfaces();
@@ -50,14 +50,14 @@ namespace TebakAngka.DI
         private void RegisterMessagePipe(IContainerBuilder builder)
         {
             var options = builder.RegisterMessagePipe();
-            
+
             // state change message
             builder.RegisterMessageBroker<GameStateEnum>(options);
-            
+
             // used by GenerateLevelState -> LevelPresenter
             builder.RegisterMessageBroker<GameStateEnum, IList<int>>(options);
             builder.RegisterMessageBroker<GameStateEnum, int>(options);
-            
+
             // used by CheckAnswerState -> ?
             builder.RegisterMessageBroker<GameStateEnum, bool>(options);
         }
@@ -70,26 +70,26 @@ namespace TebakAngka.DI
             builder.Register<ResultPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<ResultAudioPresenter>(Lifetime.Scoped).AsImplementedInterfaces().WithParameter("audioClipCollections", _resultClipCollections);
         }
-        
+
         private void RegisterController(IContainerBuilder builder)
         {
             // interface IAsyncRequestHandler<GameStateEnum, int> is referenced by Domain class UserInputState.
             builder.Register<AnswerController>(Lifetime.Scoped).AsImplementedInterfaces();
         }
-        
+
         private void RegisterView(IContainerBuilder builder)
         {
             // main menu
             builder.RegisterInstance(_mainMenuBaseObject);
             builder.RegisterInstance(_startButton);
-            
+
             // audio
             builder.RegisterInstance(_audioSource);
-            
+
             // IList<CardView> is shared and referenced by LevelPresenter and AnswerController.
             builder.RegisterInstance(new List<CardView>()).AsImplementedInterfaces();
             builder.RegisterInstance(_resultViews);
-            
+
             // register CardView factory. Factory is referenced by LevelPresenter.
             builder.RegisterFactory<CardView>(container =>
                 {

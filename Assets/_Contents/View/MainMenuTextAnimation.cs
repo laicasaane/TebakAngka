@@ -6,7 +6,7 @@ namespace Feature.MainMenu
     public class MainMenuTextAnimation : MonoBehaviour
     {
         [SerializeField] private Transform _labelTransform;
-        
+
         private const float ScaleValueX = 1.04f;
         private const float ScaleValueY = 1.16f;
         private const float IdleDuration = 0.5f;

@@ -25,11 +25,11 @@ namespace TebakAngka.Presenter
             _baseObject = baseObject;
             _startButton = startButton;
         }
-        
+
         public void Initialize()
         {
             var bag = DisposableBag.CreateBuilder();
-            
+
             _gameStateSubscriber.Subscribe(async (stateEnum, token) =>
             {
                 if (stateEnum != GameStateEnum.MainMenu)
@@ -39,7 +39,7 @@ namespace TebakAngka.Presenter
                 await _startButton.OnClickAsync(token);
                 _baseObject.SetActive(false);
             }).AddTo(bag);
-            
+
             _subscription = bag.Build();
         }
 

@@ -18,7 +18,7 @@ namespace TebakAngka.Presenter
         private readonly AudioClipCollection _numberClipsIbun;
         private readonly AudioClipCollection _numberClipsRanca;
         private readonly AudioSource _audioSource;
-        
+
         private IDisposable _subscription;
 
         public LevelAudioPresenter(
@@ -33,13 +33,13 @@ namespace TebakAngka.Presenter
             _numberClipsRanca = audioClipCollections[3];
              _audioSource = audioSource;
         }
-        
+
         public void Initialize()
         {
             var bag = DisposableBag.CreateBuilder();
-            
+
             _correctAnswerSubscriber.Subscribe(GameStateEnum.GenerateLevel, PlayLevelIntroAudio).AddTo(bag);
-            
+
             _subscription = bag.Build();
         }
 
@@ -59,7 +59,7 @@ namespace TebakAngka.Presenter
             _audioSource.clip = baseIdx == 0 ? _numberClipsIbun[answer] : _numberClipsRanca[answer];
             _audioSource.pitch = Random.Range(0.95f, 1.05f);
             _audioSource.Play();
-            
+
             await UniTask.Delay(TimeSpan.FromSeconds(_audioSource.clip.length), cancellationToken: token);
         }
 

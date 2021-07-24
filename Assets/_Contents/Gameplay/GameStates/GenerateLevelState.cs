@@ -27,7 +27,7 @@ namespace TebakAngka.Gameplay
         public async UniTask OnStateBegan(CancellationToken cancellationToken)
         {
             GenerateLevel();
-            
+
             await UniTask.WhenAll(
                 _answersPublisher.PublishAsync(OwnState, _gameModel.answers, cancellationToken),
                 _correctAnswerPublisher.PublishAsync(OwnState, _gameModel.correctAnswer, cancellationToken));
@@ -43,7 +43,7 @@ namespace TebakAngka.Gameplay
             _gameModel.level++; // progress level;
             var maxNumber = _gameModel.LevelMaxNumber;
             _gameModel.correctAnswer = Random.Range(GameModel.MinNumber, maxNumber);
-            
+
             var answerCount = Mathf.FloorToInt(Mathf.Log(_gameModel.level + 1, 2)) + 1;
             var answers = _gameModel.answers;
 
@@ -56,9 +56,9 @@ namespace TebakAngka.Gameplay
                     _gameModel.ShuffleAnswers();
                     continue;
                 }
-                
+
                 var temp = Random.Range(GameModel.MinNumber, maxNumber);
-                
+
                 // only 1 answer option
                 while (answers.Contains(temp))
                 {
