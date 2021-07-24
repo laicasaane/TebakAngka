@@ -1,0 +1,26 @@
+{
+    "name": "TebakAngka",
+    "rootNamespace": "",
+    "references": [
+        "DOTween.Modules",
+        "MessagePipe",
+        "MessagePipe.VContainer",
+        "UniTask",
+        "UniTask.Addressables",
+        "UniTask.DOTween",
+        "Unity.TextMeshPro",
+        "UniTask.Linq",
+        "VContainer",
+        "VContainer.EnableCodeGen",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

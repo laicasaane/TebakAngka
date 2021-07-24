@@ -18,7 +18,7 @@ namespace TebakAngka.View
             
             var targetAlpha = 0.4f;
             var fadeDuration = 0.3f;
-            DOTween.ToAlpha(() => _overlay.color, color => _overlay.color = color, targetAlpha, fadeDuration).From(0f);
+            DOTween.ToAlpha(() => _overlay.color, color => _overlay.color = color, targetAlpha, fadeDuration).From(0f).ToUniTask(cancellationToken: token).Forget();
             
             var duration = 0.05f;
             
@@ -32,7 +32,7 @@ namespace TebakAngka.View
             
             await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
             
-            DOTween.ToAlpha(() => _overlay.color, color => _overlay.color = color, 0, fadeDuration).From(targetAlpha);
+            DOTween.ToAlpha(() => _overlay.color, color => _overlay.color = color, 0, fadeDuration).From(targetAlpha).ToUniTask(cancellationToken: token).Forget();
             
             await _baseTransform.DOScaleX(0f, fadeDuration).From(1f).ToUniTask(cancellationToken: token);
             
