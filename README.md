@@ -4,13 +4,13 @@ Number Guessing game requested by my own daughter.
 
 ## Unity Version
 
-Unity 2020.3.8f1 (LTS)
+Unity 2020.3.13f1 (LTS)
 
-## Assets
+## Packages
 
-- [UniTask](https://github.com/Cysharp/UniTask) 2.2.5
-- [MessagePipe](https://github.com/Cysharp/MessagePipe) 1.3.3
-- [VContainer](https://github.com/hadashiA/VContainer) 1.8.1
+- [UniTask](https://github.com/Cysharp/UniTask)
+- [MessagePipe](https://github.com/Cysharp/MessagePipe)
+- [VContainer](https://github.com/hadashiA/VContainer)
 
 # LICENSE
 
